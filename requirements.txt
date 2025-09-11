@@ -1,8 +1,22 @@
-ultralytics>=8.0.0
-supervision>=0.18.0
-torch>=2.0.0
-torchvision>=0.15.0
-opencv-python>=4.8.0
-numpy>=1.24.0
-tensorrt>=8.6.0
-Pillow>=10.0.0
+# Working package versions for Jetson Orin Nano with JetPack 6.0
+# These versions are compatible with each other and avoid NumPy 2.x compatibility issues
+
+# Core ML packages - CUDA support note below
+torch==2.0.1
+torchvision==0.15.2
+numpy<2.0,>=1.21.2
+
+# Computer Vision
+opencv-python<4.9.0,>=4.8.0
+
+# YOLO and Object Detection
+ultralytics==8.3.186
+supervision
+
+# Utilities
+PyYAML>=6.0
+
+# IMPORTANT CUDA SETUP FOR JETSON:
+# Install PyTorch with: pip install torch==2.0.1 torchvision==0.15.2 --index-url https://download.pytorch.org/whl/cu118
+# Note: CUDA detection may not work in virtual environments on JetPack 6.0 due to library path issues
+# The application will fall back to CPU inference if CUDA is not detected
